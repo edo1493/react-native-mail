@@ -41,7 +41,12 @@ public class RNMailModule extends ReactContextBaseJavaModule {
     }
 
     if (options.hasKey("body") && !options.isNull("body")) {
-      i.putExtra(Intent.EXTRA_TEXT, options.getString("body"));
+      i.putExtra(
+          Intent.EXTRA_TEXT,
+          Html.fromHtml(new StringBuilder()
+             .append(options.getString("body"))
+             .toString())
+         );
     }
 
     if (options.hasKey("recipients") && !options.isNull("recipients")) {
